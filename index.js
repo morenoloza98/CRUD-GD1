@@ -1,5 +1,6 @@
 // Importa el paquete de express
 let express = require('express');
+
 // Obtiene una instancia de express
 let app = express();
 
@@ -8,6 +9,9 @@ let appRoutes = require('./routes/app');
 
 // Define que configuraciones de rutas se van a utilizar para la ruta
 app.use('/', appRoutes);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Configuraciones de las vistas
 let exphbs = require('express-handlebars');

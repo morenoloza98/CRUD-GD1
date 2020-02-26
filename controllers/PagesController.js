@@ -16,3 +16,19 @@ exports.homepage = (req, res) => {
 exports.about = (req, res) => {
   res.send('About us');
 }
+
+exports.addNew = (req, res) => {
+  res.render('pages/addNew');
+}
+
+exports.insertProduct = (req, res, next) => {
+  console.log(req.body);
+  res.redirect('/');
+  // const product = ProductModel.factory(req.body.name, req.body.desc, req.body.price);
+  // knex('products')
+  //   .insert(product, 'id')
+  //   .then(ids => {
+  //     const id = ids[0];
+  //     res.redirect(`/${id}`);
+  //   });
+}

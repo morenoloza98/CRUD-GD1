@@ -1,10 +1,13 @@
-<h1>Hello MVC</h1>
-<p>This is my first page</p>
+<h1>Factory</h1>
 <h2>Our products</h2>
 <ul>
     {{#each products}}
     <li>
-        Nombre: {{name}} ($ {{price}})
+        Nombre: {{name}} ($ {{price}}) 
+        <button>Edit</button>
+        <button>Delete</button>
     </li>
     {{/each}}
 </ul>
+<br>
+<a type="button" href="/addNew">Add product</a>
