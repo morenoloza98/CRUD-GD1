@@ -1,0 +1,23 @@
+<div class="m-4">
+    <a href="/{{id}}" class="btn btn-light">Back</a>
+</div>
+<form action="/{{id}}?_method=PUT" method="post" class="form-group m-3">
+    <label for="name">Name</label>
+    <div class="input-group mb-2">
+        <input value="{{name}}" type="text" id="name" placeholder="Enter a product" name="name" class="form-control">
+    </div>
+    <label for="price">Price</label>
+    <div class="input-group mb-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+        </div>
+        <input value="{{price}}" type="text" id="price" placeholder="Enter a price" name="price" class="form-control">
+    </div>
+    <label for="desc">Description</label>
+    <div class="input-group mb-2">
+        <textarea type="text" id="desc" placeholder="Enter a description" name="desc" class="form-control">{{description}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-success mt-3">
+        Update
+    </button>
+</form>

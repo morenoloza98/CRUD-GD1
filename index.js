@@ -3,6 +3,11 @@ let express = require('express');
 
 // Obtiene una instancia de express
 let app = express();
+let methodOverride = require('method-override');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 
 // Importa las configuraciones
 let appRoutes = require('./routes/app');
@@ -10,8 +15,7 @@ let appRoutes = require('./routes/app');
 // Define que configuraciones de rutas se van a utilizar para la ruta
 app.use('/', appRoutes);
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// let bodyParser = require('body-parser');
 
 // Configuraciones de las vistas
 let exphbs = require('express-handlebars');

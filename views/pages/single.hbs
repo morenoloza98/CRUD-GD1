@@ -1,0 +1,21 @@
+<div class="m-4">
+    <a href="/" class="btn btn-light">Back</a>
+</div>
+<div class="card m-4">
+    <div class="card-header">
+        <h3>{{name}}</h3>
+    </div>
+    <div class="card-body">
+        <div class="card-subtitle text-muted">
+            ${{price}}
+        </div>
+
+        <div class="card-text">
+            {{description}}
+        </div>
+    </div>
+</div>
+<a href="/{{id}}/edit" class="btn btn-primary m-4">Edit Product</a>
+<form action="/{{id}}?_method=DELETE" method="post">
+    <button type="submit" class="btn btn-danger m-4">Delete Product</button>
+</form>

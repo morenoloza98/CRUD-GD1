@@ -1,34 +1,81 @@
-// Importa el modelo de productos
 let ProductModel = require('../models/Product')
 
-// Reglas para la respuesta para la petición "/"
+const knex = require('../database/connection');
+
 exports.homepage = (req, res) => {
   ProductModel.all()
     .then((data) => {
-      // Guardamos los productos en una variable
       let products = data;
-      // Enviamos los datos a la vista
       res.render('pages/homepage', { products: products });
     });
-}
-
-// Reglas para la respuesta para la petición "/about"
-exports.about = (req, res) => {
-  res.send('About us');
 }
 
 exports.addNew = (req, res) => {
   res.render('pages/addNew');
 }
 
-exports.insertProduct = (req, res, next) => {
-  console.log(req.body);
-  res.redirect('/');
-  // const product = ProductModel.factory(req.body.name, req.body.desc, req.body.price);
-  // knex('products')
-  //   .insert(product, 'id')
-  //   .then(ids => {
-  //     const id = ids[0];
-  //     res.redirect(`/${id}`);
-  //   });
+exports.insertProduct = (req, res) => {
+  const product = {
+    name : req.body.name,
+    description : req.body.desc,
+    price : req.body.price
+  };
+  knex('products')
+    .insert(product, 'id')
+    .then(ids => {
+      const id = ids[0];
+      res.redirect(`/${id}`);
+    });
+}
+
+function respondAndRenderView(id, res, view){
+  if(typeof id != 'undefined'){
+    knex('products')
+    .select()
+    .where('id', id)
+    .first()
+    .then(product => {
+      res.render(view, product);
+    });
+  }else{
+    console.log('error');
+  }
+}
+
+exports.specificProduct = (req, res) => {
+  const id = req.params.id;
+  respondAndRenderView(id, res, 'pages/single')
+}
+
+exports.editProduct = (req, res) => {
+  const id = req.params.id;
+  respondAndRenderView(id, res, 'pages/edit')
+}
+
+exports.updateProduct = (req, res) => {
+  const product = {
+    name : req.body.name,
+    description : req.body.desc,
+    price : req.body.price
+  };
+  knex('products')
+    .where('id', req.params.id)
+    .update(product, 'id')
+    .then(() => {
+      res.redirect(`/${req.params.id}`);
+    });
+}
+
+exports.deleteProduct = (req, res) => {
+  const id = req.params.id;
+  if(typeof id != 'undefined'){
+    knex('products')
+    .where('id', id)
+    .del()
+    .then(() => {
+      res.redirect('/');
+    });
+  }else{
+    console.log('error');
+  }
 }

@@ -1,20 +1,20 @@
-<form action="/" method="post">
-    <div>
+<div class="m-4">
+    <a href="/" class="btn btn-light">Back</a>
+</div>
+<form action="/" method="post" class="form-group m-4">
+    <div class="mt-2">
         <label for="name">Name</label>
-        <input type="text" id="name" placeholder="Enter a product" name="name">
+        <input type="text" id="name" placeholder="Enter a product" name="name" class="form-control">
     </div>
-    <br>
-    <div>
+    <div class="mt-2">
         <label for="price">Price</label>
-        <input type="text" id="price" placeholder="Enter a price" name="price">
+        <input type="text" id="price" placeholder="Enter a price" name="price" class="form-control">
     </div>
-    <br>
-    <div>
+    <div class="mt-2">
         <label for="desc">Description</label>
-        <textarea type="text" id="desc" placeholder="Enter a description" name="desc"></textarea>
+        <textarea type="text" id="desc" placeholder="Enter a description" name="desc" class="form-control"></textarea>
     </div>
-    <br>
-    <button type="submit">
+    <button type="submit" class="btn btn-primary mt-3">
         Create
     </button>
 </form>
